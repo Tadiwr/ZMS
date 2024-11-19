@@ -14,3 +14,16 @@ tr, td, thead, tbody, th {
     border-bottom: solid;
     border-color: rgb(231, 231, 231);
 }
+
+input, textarea {
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: solid;
+    border-color: rgb(220, 220, 220);
+}
+
+form > label {
+    font-size: 18px;
+    font-weight: 500;
+}
