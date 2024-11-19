@@ -39,7 +39,7 @@ export default function RootLayout({
             <div className="w-64 fixed h-screen border-r" >
               <SideBar />
             </div>
-            <div className="ml-64" >
+            <div className="ml-64 w-full" >
               {children}
             </div>
           </div>
