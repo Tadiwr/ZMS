@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProvincesRepository extends CrudRepository<Province, Long>  {
     public List<Province> findByName(String name);
+    public List<Province> findAll();
 }
