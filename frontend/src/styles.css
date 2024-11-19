@@ -32,3 +32,19 @@ th {
 thead {
   background-color: rgb(237, 237, 237);
 }
+
+button {
+  background-color: rgb(5, 1, 237);
+  color: white;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 10px;
+}
+
+button:hover {
+  border-color: rgb(224, 224, 224);
+  background-color: black;
+  color: white;
+}
