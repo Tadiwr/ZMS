@@ -1,3 +1,16 @@
+<div class="w-full fixed top-0 left-0 h-12" >
+  <app-navbar class="w-full" />
+</div>
 
-<h1>Yeah this app is working</h1>
-<router-outlet />
+<div class="mt-12 flex flex-row" >
+
+  <div class="w-52 border-r fixed h-screen" >
+    <app-sidebar />
+  </div>
+
+  <div class="ml-52" >
+    <router-outlet />
+  </div>
+
+</div>
+
