@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Province, ProvincesService } from '../provinces.service';
+import { ProvinceRowCardComponent } from "../province-row-card/province-row-card.component";
 
 @Component({
   selector: 'app-province-page',
   standalone: true,
-  imports: [],
+  imports: [ProvinceRowCardComponent],
   templateUrl: './province-page.component.html',
   styleUrl: './province-page.component.css'
 })

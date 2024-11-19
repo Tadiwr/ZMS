@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+th, td, tr {
+  /* border: solid; */
+  /* border-color: rgb(186, 186, 186); */
+  padding: 10px;
+  font-weight:500;
+  color: rgb(37, 37, 37);
+  text-align: start;
+
+}
+
+tr {
+  width: 100%;
+}
+
+table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+
+tr:nth-child(odd) {
+  background-color: rgb(255, 255, 255);
+}
+
+th, tr:nth-child(even) {
+  background-color: rgb(242, 242, 242);
+}
+
+thead {
+  background-color: rgb(237, 237, 237);
+}
