@@ -15,6 +15,8 @@ th, td, tr {
 
 tr {
   width: 100%;
+  border-bottom: solid;
+  border-color: rgb(233, 233, 233);
 }
 
 table {
@@ -23,12 +25,7 @@ table {
 }
 
 
-
-tr:nth-child(odd) {
-  background-color: rgb(255, 255, 255);
-}
-
-th, tr:nth-child(even) {
+th {
   background-color: rgb(242, 242, 242);
 }
 
