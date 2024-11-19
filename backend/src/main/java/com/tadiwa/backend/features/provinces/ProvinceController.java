@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tadiwa.backend.features.provinces.dto.AddProvinceDTO;
+import com.tadiwa.backend.features.provinces.dto.UpdateProvinceDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 @RestController
@@ -60,6 +63,20 @@ public class ProvinceController {
             e.printStackTrace();
             return ResponseEntity.internalServerError().build();
         }
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Province> updateProvince(@PathVariable String id, @RequestBody UpdateProvinceDTO dto) {
+        Optional<Province> provOptional = provService.updateProvince(dto);
+
+        if (provOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Province province = provOptional.get();
+
+        return ResponseEntity.ok(province);
+
     }
 
 }
