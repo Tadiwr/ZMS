@@ -56,8 +56,8 @@ public class AdminDistrictController {
         
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<AdminDistrict> add(@PathVariable Long id, @RequestBody UpdateAdminDistrictDTO dto) {
+    @PutMapping("/update")
+    public ResponseEntity<AdminDistrict> add(@RequestBody UpdateAdminDistrictDTO dto) {
         
         try {
             AdminDistrict district = adminDistService.updateAdminDistrict(dto);

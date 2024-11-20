@@ -48,7 +48,7 @@ public class PartyDistrictService {
         return repo.findById(id);
     }
 
-    public PartyDistrict createPartyDistrict(UpdatePartyDistrictDTO dto) throws NotFound {
+    public PartyDistrict updatePartyDistrict(UpdatePartyDistrictDTO dto) throws NotFound {
         Optional<PartyDistrict> partyDistOptional = repo.findById(dto.getId());
 
         if (partyDistOptional.isEmpty()) {
