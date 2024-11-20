@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tadiwa.backend.features.provinces.dto.AddProvinceDTO;
+import com.tadiwa.backend.features.provinces.dto.ProvinceDTO;
 import com.tadiwa.backend.features.provinces.dto.UpdateProvinceDTO;
 
 import java.util.List;
@@ -29,10 +30,10 @@ public class ProvinceController {
     private ProvinceService provService;
     
     @PostMapping("/add")
-    public ResponseEntity<Province> addProvince(@RequestBody AddProvinceDTO dto) {
+    public ResponseEntity<ProvinceDTO> addProvince(@RequestBody AddProvinceDTO dto) {
         Province province = provService.createProvince(dto);
 
-        return ResponseEntity.ok(province);
+        return ResponseEntity.ok(province.toDTO());
     }
 
     @GetMapping("")

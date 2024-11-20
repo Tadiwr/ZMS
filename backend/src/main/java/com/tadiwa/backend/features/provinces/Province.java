@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.tadiwa.backend.features.admindistrict.AdminDistrict;
 import com.tadiwa.backend.features.constituencies.Constituency;
+import com.tadiwa.backend.features.provinces.dto.ProvinceDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,5 +32,14 @@ public class Province {
 
     @OneToMany(mappedBy = "province")
     private List<Constituency> constituencies;
+
+    public ProvinceDTO toDTO() {
+        return new ProvinceDTO(
+            this.id,
+            this.name,
+            this.adminDistricts,
+            this.constituencies
+        );
+    }
 
 }
