@@ -13,7 +13,7 @@ import com.tadiwa.backend.shared.exceptions.NotFound;
 
 @Service
 public class PartyDistrictService {
-    
+
     @Autowired
     private PartyDistrictRepository repo;
 
