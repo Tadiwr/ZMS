@@ -8,6 +8,8 @@ import com.tadiwa.backend.features.admindistrict.dtos.UpdateAdminDistrictDTO;
 import com.tadiwa.backend.shared.exceptions.NotFound;
 import com.tadiwa.backend.shared.exceptions.ProvinceNotFound;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -67,6 +69,22 @@ public class AdminDistrictController {
         }   
         
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AdminDistrict> getAdminDistrict(@PathVariable Long id) {
+
+        Optional<AdminDistrict> optional = adminDistService.getAdminDistrictById(id);
+
+        if (optional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        AdminDistrict adminDistrict = optional.get();
+
+        return ResponseEntity.ok(adminDistrict);
+        
+    }
+
     
 
 }
