@@ -34,7 +34,7 @@ public class ProvinceController {
     public ResponseEntity<ProvinceDTO> addProvince(@RequestBody AddProvinceDTO dto) {
         Province province = provService.createProvince(dto);
 
-        return ResponseEntity.ok(province.toDTO());
+        return ResponseEntity.ok(DtoUtil.transform(province));
     }
 
     @GetMapping("")
