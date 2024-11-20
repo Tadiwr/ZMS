@@ -1,10 +1,7 @@
-package com.tadiwa.backend.features.partydistricts;
-
-import java.util.List;
+package com.tadiwa.backend.features.branches;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tadiwa.backend.features.admindistrict.AdminDistrict;
-import com.tadiwa.backend.features.branches.Branch;
+import com.tadiwa.backend.features.partydistricts.PartyDistrict;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,14 +9,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "party_districts")
-public class PartyDistrict {
+@Table(name = "branches")
+public class Branch {
     
     @Id
     @GeneratedValue
@@ -28,12 +24,11 @@ public class PartyDistrict {
     @Column
     private String name;
 
+    
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "admin_district_id")
-    private AdminDistrict adminDistrict;
+    @JoinColumn(name = "party_district_id")
+    private PartyDistrict partyDistrict;
 
-    @OneToMany(mappedBy = "partyDistrict")
-    private List<Branch> branchs;
-    
+
 }
