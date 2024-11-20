@@ -66,8 +66,8 @@ public class ProvinceController {
         }
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Province> updateProvince(@PathVariable String id, @RequestBody UpdateProvinceDTO dto) {
+    @PutMapping("/update")
+    public ResponseEntity<Province> updateProvince(@RequestBody UpdateProvinceDTO dto) {
         Optional<Province> provOptional = provService.updateProvince(dto);
 
         if (provOptional.isEmpty()) {

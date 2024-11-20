@@ -60,7 +60,7 @@ public class PartyDistrictController {
     }
     
     @PutMapping("/update")
-    public ResponseEntity<PartyDistrict> add(@RequestBody UpdatePartyDistrictDTO dto) {
+    public ResponseEntity<PartyDistrict> update(@RequestBody UpdatePartyDistrictDTO dto) {
         
         try {
             PartyDistrict partyDistrict = partyDistrictService.updatePartyDistrict(dto);
