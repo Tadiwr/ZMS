@@ -4,7 +4,6 @@ import jakarta.persistence.Table;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tadiwa.backend.features.admindistrict.AdminDistrict;
 
 import jakarta.persistence.Column;
