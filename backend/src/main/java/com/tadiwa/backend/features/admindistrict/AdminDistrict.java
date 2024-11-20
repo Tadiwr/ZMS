@@ -1,5 +1,6 @@
 package com.tadiwa.backend.features.admindistrict;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tadiwa.backend.features.provinces.Province;
 
 import jakarta.persistence.Column;
