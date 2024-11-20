@@ -1,4 +1,4 @@
-package com.tadiwa.backend.exceptions;
+package com.tadiwa.backend.shared.exceptions;
 
 public class ProvinceNotFound extends Exception {
     @Override
