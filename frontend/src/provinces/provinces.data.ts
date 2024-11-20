@@ -25,4 +25,12 @@ export async function addProvinceApi(province: NewProvince) {
     const NewProvince = (await res.json()) as Province;
 
     return NewProvince;
-} 
+}
+
+export async function deleteProvinceApi(province: Province) {
+    const reqUrl = `${BASE_URL}/${province.id}`;
+
+    const res = await fetch(reqUrl, {
+        method: "DELETE",
+    });
+}

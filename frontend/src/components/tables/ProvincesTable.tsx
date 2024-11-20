@@ -13,6 +13,7 @@ export default function ProvincesTable({provinces, className}: Props) {
     <table className={twMerge(className)}>
         <thead>
             <tr>
+                <th>No</th>
                 <th>Id</th>
                 <th>Name</th>
                 <th></th>
@@ -22,7 +23,7 @@ export default function ProvincesTable({provinces, className}: Props) {
 
         <tbody>
             {provinces.map((prov, index) => {
-                return <ProvinceTableRow key={index} province={prov} />
+                return <ProvinceTableRow no={index + 1} key={index} province={prov} />
             })}
         </tbody>
     </table>
