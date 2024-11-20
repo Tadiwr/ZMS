@@ -3,10 +3,10 @@ package com.tadiwa.backend.features.admindistrict;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tadiwa.backend.exceptions.NotFound;
-import com.tadiwa.backend.exceptions.ProvinceNotFound;
 import com.tadiwa.backend.features.admindistrict.dtos.CreateAdminDistrictDTO;
 import com.tadiwa.backend.features.admindistrict.dtos.UpdateAdminDistrictDTO;
+import com.tadiwa.backend.shared.exceptions.NotFound;
+import com.tadiwa.backend.shared.exceptions.ProvinceNotFound;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

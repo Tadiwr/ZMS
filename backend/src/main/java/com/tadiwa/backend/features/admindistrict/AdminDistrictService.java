@@ -5,12 +5,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tadiwa.backend.exceptions.NotFound;
-import com.tadiwa.backend.exceptions.ProvinceNotFound;
 import com.tadiwa.backend.features.admindistrict.dtos.CreateAdminDistrictDTO;
 import com.tadiwa.backend.features.admindistrict.dtos.UpdateAdminDistrictDTO;
 import com.tadiwa.backend.features.provinces.Province;
 import com.tadiwa.backend.features.provinces.ProvinceService;
+import com.tadiwa.backend.shared.exceptions.NotFound;
+import com.tadiwa.backend.shared.exceptions.ProvinceNotFound;
 
 @Service
 public class AdminDistrictService {
@@ -69,6 +69,10 @@ public class AdminDistrictService {
         adminDistrict.setProvince(province);
 
         return repo.save(adminDistrict);
+    }
+
+    public Optional<AdminDistrict> getAdminDistrictById(Long id) {
+        return repo.findById(id);
     }
     
 }
