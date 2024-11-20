@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tadiwa.backend.features.admindistrict.AdminDistrict;
 import com.tadiwa.backend.features.partydistricts.dto.AddPartyDistrictDTO;
 import com.tadiwa.backend.features.partydistricts.dto.UpdatePartyDistrictDTO;
 import com.tadiwa.backend.shared.exceptions.NotFound;
