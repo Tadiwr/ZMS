@@ -1,11 +1,11 @@
 import AddProvinceModal from '@/components/modals/AddProvinceModal';
 import ProvincesTable from '@/components/tables/ProvincesTable';
-import { getAllProvinces } from '@/features/provinces/provinces.data'
+import { getAllProvincesApi } from '@/provinces/provinces.data'
 import React from 'react';
 
 export default async function Home() {
 
-  const provinces = await getAllProvinces();
+  const provinces = await getAllProvincesApi();
 
   return (
     <div className='p-5 w-full' >
