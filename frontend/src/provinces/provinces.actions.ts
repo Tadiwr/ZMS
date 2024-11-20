@@ -1,8 +1,8 @@
 "use server";
 
 import { FormNames } from "@/utils";
-import { addProvinceApi } from "./provinces.data";
-import { NewProvince } from "@/types";
+import { addProvinceApi, updateProvinceApi } from "./provinces.data";
+import { NewProvince, Province } from "@/types";
 
 export async function addProductAction(message: string, form: FormData) {
     try {
@@ -21,4 +21,19 @@ export async function addProductAction(message: string, form: FormData) {
         console.log(error);
         return "Error Occured";
     }
+}
+
+export async function updateProvinceAction(oldProvince: Province, form: FormData) {
+
+    const formProvince = {
+        name: form.get(FormNames.Provinces.PROVINCE_NAME)?.valueOf().toString() ?? ""
+    }
+
+    const newProvince: Province = {
+        name: formProvince.name,
+        id: oldProvince.id
+    }
+
+    // send api req
+    return await updateProvinceApi(newProvince);
 }

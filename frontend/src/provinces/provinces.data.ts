@@ -34,3 +34,19 @@ export async function deleteProvinceApi(province: Province) {
         method: "DELETE",
     });
 }
+
+export async function updateProvinceApi(province: Province) {
+    const reqUrl = `${BASE_URL}/update/${province.id}`;
+
+    const res = await fetch(reqUrl, {
+        method: "PUT",
+        body: JSON.stringify(province),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+
+    const NewProvince = (await res.json()) as Province;
+
+    return NewProvince;
+}

@@ -4,6 +4,7 @@ import { Province } from '@/types'
 import React from 'react'
 import AsyncActionButton from '../buttons/AsyncActionButton';
 import { deleteProvinceApi } from '@/provinces/provinces.data';
+import UpdateProvinceModal from '../modals/UpdateProvinceModal';
 
 type Props = {
     province: Province,
@@ -28,7 +29,7 @@ export default function ProvinceTableRow({province, no}: Props) {
             >Delete</AsyncActionButton>
         </td>
         <td>
-            <span className=' cursor-default text-blue-400 hover:text-white hover:bg-blue-500 px-3 py-2 w-fit rounded-xl' >Edit</span>
+            <UpdateProvinceModal province={province} />
         </td>
     </tr>
   )
