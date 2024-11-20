@@ -7,6 +7,7 @@ import java.util.List;
 import com.tadiwa.backend.features.admindistrict.AdminDistrict;
 import com.tadiwa.backend.features.constituencies.Constituency;
 import com.tadiwa.backend.features.provinces.dto.ProvinceDTO;
+import com.tadiwa.backend.shared.tranferable.Transferable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,7 +19,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="provinces")
-public class Province {
+public class Province implements Transferable<ProvinceDTO> {
 
     @Id
     @GeneratedValue
