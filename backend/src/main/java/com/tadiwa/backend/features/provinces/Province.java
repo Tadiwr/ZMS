@@ -26,7 +26,6 @@ public class Province {
     @Column(nullable = false)
     private String name;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "province")
     private List<AdminDistrict> adminDistricts;
 

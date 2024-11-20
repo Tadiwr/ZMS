@@ -25,6 +25,7 @@ public class AdminDistrict {
     private String name;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "province_id")
     private Province province;
     
