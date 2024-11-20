@@ -12,7 +12,7 @@ public class DtoUtil {
     }
 
     /** Takes a List of `Transferable` and returns its Data Transfer Object form  */
-    public static <T> List<T> transform(List<Transferable<T>> transferableList) {
+    public static <T> List<T> transform(List<? extends Transferable<T>> transferableList) {
         return transferableList.stream()
             .map(obj -> obj.toDTO())
             .collect(Collectors.toList())
@@ -20,7 +20,7 @@ public class DtoUtil {
     }
 
     /** Takes an Iterable of `Transferable` and returns its Data Transfer Object form  */
-    public static <T> List<T> transform(Iterable<Transferable<T>> transferableIterable) {
+    public static <T> List<T> transform(Iterable<? extends Transferable<T>> transferableIterable) {
         return StreamSupport.stream(transferableIterable.spliterator(), false)
             .map(transferable -> transferable.toDTO())
             .collect(Collectors.toList());

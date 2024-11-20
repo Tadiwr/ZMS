@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tadiwa.backend.features.provinces.dto.AddProvinceDTO;
 import com.tadiwa.backend.features.provinces.dto.ProvinceDTO;
 import com.tadiwa.backend.features.provinces.dto.UpdateProvinceDTO;
+import com.tadiwa.backend.shared.tranferable.DtoUtil;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,12 +38,12 @@ public class ProvinceController {
     }
 
     @GetMapping("")
-    public List<Province> allProvinces() {
-        return provService.getAllProvinces();
+    public List<ProvinceDTO> allProvinces() {
+        return DtoUtil.transform(provService.getAllProvinces());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Province> getById(@PathVariable Long id) {
+    public ResponseEntity<ProvinceDTO> getById(@PathVariable Long id) {
         Optional<Province> provOptional = provService.getProvinceById(id);
 
         if (provOptional.isEmpty()) {
@@ -51,7 +52,7 @@ public class ProvinceController {
 
         Province province = provOptional.get();
 
-        return ResponseEntity.ok(province);
+        return ResponseEntity.ok(DtoUtil.transform(province));
     }
     
     @DeleteMapping("/{id}")
@@ -68,7 +69,7 @@ public class ProvinceController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Province> updateProvince(@RequestBody UpdateProvinceDTO dto) {
+    public ResponseEntity<ProvinceDTO> updateProvince(@RequestBody UpdateProvinceDTO dto) {
         Optional<Province> provOptional = provService.updateProvince(dto);
 
         if (provOptional.isEmpty()) {
@@ -77,7 +78,7 @@ public class ProvinceController {
 
         Province province = provOptional.get();
 
-        return ResponseEntity.ok(province);
+        return ResponseEntity.ok(DtoUtil.transform(province));
 
     }
 
