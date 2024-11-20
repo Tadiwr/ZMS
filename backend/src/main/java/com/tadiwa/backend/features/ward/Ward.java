@@ -1,10 +1,7 @@
-package com.tadiwa.backend.features.constituencies;
-
-import java.util.List;
+package com.tadiwa.backend.features.ward;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tadiwa.backend.features.provinces.Province;
-import com.tadiwa.backend.features.ward.Ward;
+import com.tadiwa.backend.features.constituencies.Constituency;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,15 +9,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "contituencies")
-
-public class Constituency {
+@Table(name = "wards")
+public class Ward {
     
     @Id
     @GeneratedValue
@@ -30,11 +25,8 @@ public class Constituency {
     private String name;
 
     @ManyToOne
+    @JoinColumn(name = "constituency_id")
     @JsonIgnore
-    @JoinColumn(name = "province_id")
-    private Province province;
-
-    @OneToMany(mappedBy = "constituency")
-    private List<Ward> wards;
+    private Constituency constituency;
 
 }
