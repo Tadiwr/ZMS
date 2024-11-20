@@ -5,6 +5,7 @@ import jakarta.persistence.Table;
 import java.util.List;
 
 import com.tadiwa.backend.features.admindistrict.AdminDistrict;
+import com.tadiwa.backend.features.constituencies.Constituency;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,5 +28,8 @@ public class Province {
 
     @OneToMany(mappedBy = "province")
     private List<AdminDistrict> adminDistricts;
+
+    @OneToMany(mappedBy = "province")
+    private List<Constituency> constituencies;
 
 }
