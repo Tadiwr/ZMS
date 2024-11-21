@@ -36,6 +36,9 @@ public class Member {
     private Long voterRegNumber;
 
     @Column
+    private String idNumber;
+
+    @Column
     private String physicalAddress;
 
     @Column
