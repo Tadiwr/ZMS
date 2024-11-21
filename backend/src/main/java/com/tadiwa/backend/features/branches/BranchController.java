@@ -4,8 +4,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tadiwa.backend.features.branches.dto.AddBranchDTO;
+import com.tadiwa.backend.features.branches.dto.BranchDTO;
 import com.tadiwa.backend.features.branches.dto.UpdateBranchDTO;
 import com.tadiwa.backend.shared.exceptions.NotFound;
+import com.tadiwa.backend.shared.tranferable.DtoUtil;
 
 import java.util.Optional;
 
@@ -27,12 +29,12 @@ public class BranchController {
     private BranchService branchService;
     
     @PostMapping("/add")
-    public ResponseEntity<Branch> addBranch(@RequestBody AddBranchDTO dto) {
+    public ResponseEntity<BranchDTO> addBranch(@RequestBody AddBranchDTO dto) {
 
         try {
             Branch branch = branchService.createBrach(dto);
 
-            return ResponseEntity.ok(branch);
+            return ResponseEntity.ok(DtoUtil.transform(branch));
 
         } catch (NotFound e) {
             return ResponseEntity.notFound().build();
@@ -40,12 +42,12 @@ public class BranchController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Branch> updateBranch(@RequestBody UpdateBranchDTO dto) {
+    public ResponseEntity<BranchDTO> updateBranch(@RequestBody UpdateBranchDTO dto) {
 
         try {
             Branch branch = branchService.updateBrach(dto);
 
-            return ResponseEntity.ok(branch);
+            return ResponseEntity.ok(DtoUtil.transform(branch));
 
         } catch (NotFound e) {
             return ResponseEntity.notFound().build();
@@ -53,12 +55,12 @@ public class BranchController {
     }
 
     @GetMapping("")
-    public Iterable<Branch> getAllBranches() {
-        return branchService.getAllBranches();
+    public Iterable<BranchDTO> getAllBranches() {
+        return DtoUtil.transform(branchService.getAllBranches());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Branch> getBranchById(@PathVariable Long id) {
+    public ResponseEntity<BranchDTO> getBranchById(@PathVariable Long id) {
         Optional<Branch> branchOptional = branchService.getBranchById(id);
 
         if (branchOptional.isEmpty()) {
@@ -67,7 +69,7 @@ public class BranchController {
 
         Branch branch = branchOptional.get();
 
-        return ResponseEntity.ok(branch);
+        return ResponseEntity.ok(DtoUtil.transform(branch));
 
     }
 
