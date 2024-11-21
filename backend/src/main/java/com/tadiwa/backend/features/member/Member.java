@@ -7,6 +7,8 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tadiwa.backend.features.cell.Cell;
+import com.tadiwa.backend.features.member.dto.MemberDTO;
+import com.tadiwa.backend.shared.tranferable.Transferable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,7 +22,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="members")
-public class Member {
+public class Member implements Transferable<MemberDTO> {
     
     @Id
     @GeneratedValue
@@ -63,5 +65,23 @@ public class Member {
 
         this.createdAt = timeAtStamp;
     }
+
+
+    @Override
+    public MemberDTO toDTO() {
+        return new MemberDTO(
+            this.id,
+            this.fullName,
+            this.dateOfBirth,
+            this.voterRegNumber,
+            this.idNumber,
+            this.physicalAddress,
+            this.phoneNumber,
+            this.membershipNumber,
+            this.createdAt,
+            this.getCell().getId()
+        );
+    }
+
 
 }
