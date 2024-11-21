@@ -38,7 +38,7 @@ public class Member implements Transferable<MemberDTO> {
     @Column
     private Long voterRegNumber;
 
-    @Column
+    @Column(unique = true)
     private String idNumber;
 
     @Column
