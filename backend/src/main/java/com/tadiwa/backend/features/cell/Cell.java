@@ -1,8 +1,11 @@
 package com.tadiwa.backend.features.cell;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tadiwa.backend.features.branches.Branch;
 import com.tadiwa.backend.features.cell.dto.CellDTO;
+import com.tadiwa.backend.features.member.Member;
 import com.tadiwa.backend.features.pollingstation.PollingStation;
 import com.tadiwa.backend.shared.tranferable.Transferable;
 
@@ -12,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -37,13 +41,17 @@ public class Cell implements Transferable<CellDTO>{
     @JoinColumn(name = "polling_station_id")
     private PollingStation pollingStation;
 
+    @OneToMany(mappedBy = "cell")
+    private List<Member> members;
+
     @Override
     public CellDTO toDTO() {
         return new CellDTO(
             this.id,
             this.name,
             this.getBranch().getId(),
-            this.getPollingStation().getId()
+            this.getPollingStation().getId(),
+            this.getMembers()
         );
     }
 
