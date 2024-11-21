@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tadiwa.backend.features.ward.dtos.AddWardDTO;
 import com.tadiwa.backend.features.ward.dtos.UpdateWardDTO;
+import com.tadiwa.backend.features.ward.dtos.WardDTO;
 import com.tadiwa.backend.shared.exceptions.NotFound;
+import com.tadiwa.backend.shared.tranferable.DtoUtil;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -26,32 +28,32 @@ public class WardController {
     private WardService wardService;
 
     @PostMapping("/add")
-    public ResponseEntity<Ward> addWard(@RequestBody AddWardDTO dto) {
+    public ResponseEntity<WardDTO> addWard(@RequestBody AddWardDTO dto) {
         try {
             Ward ward = wardService.createWard(dto);
-            return ResponseEntity.ok(ward);
+            return ResponseEntity.ok(DtoUtil.transform(ward));
         } catch (NotFound e) {
             return ResponseEntity.notFound().build();
         }
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Ward> updateWard(@RequestBody UpdateWardDTO dto) {
+    public ResponseEntity<WardDTO> updateWard(@RequestBody UpdateWardDTO dto) {
         try {
             Ward ward = wardService.updateWard(dto);
-            return ResponseEntity.ok(ward);
+            return ResponseEntity.ok(DtoUtil.transform(ward));
         } catch (NotFound e) {
             return ResponseEntity.notFound().build();
         }
     }
 
     @GetMapping("")
-    public Iterable<Ward> getAllWards() {
-        return wardService.getAllWards();
+    public Iterable<WardDTO> getAllWards() {
+        return DtoUtil.transform(wardService.getAllWards());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Ward> getWardById(@PathVariable Long id) {
+    public ResponseEntity<WardDTO> getWardById(@PathVariable Long id) {
         Optional<Ward> wardOptional = wardService.getWardById(id);
 
         if (wardOptional.isEmpty()) {
@@ -60,7 +62,7 @@ public class WardController {
 
         Ward ward = wardOptional.get();
 
-        return ResponseEntity.ok(ward);
+        return ResponseEntity.ok(DtoUtil.transform(ward));
     }
 
     @DeleteMapping("/{id}")
