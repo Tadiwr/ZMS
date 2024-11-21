@@ -1,6 +1,7 @@
-Setting up Swagger UI with Java Spring Boot is a great way to document your RESTful APIs. Here's a step-by-step guide to get you started:
+# Setting up Swagger UI with Java Spring Boot is a great way to document your RESTful APIs. Here's a step-by-step guide to get you started
 
 1. **Add Dependencies**: First, you need to add the necessary dependencies to your `pom.xml` file if you're using Maven:
+
    ```xml
    <dependency>
        <groupId>io.springfox</groupId>
@@ -10,6 +11,7 @@ Setting up Swagger UI with Java Spring Boot is a great way to document your REST
    ```
 
 2. **Create a Swagger Configuration Class**: Create a new configuration class to set up Swagger:
+
    ```java
    import org.springframework.context.annotation.Bean;
    import org.springframework.context.annotation.Configuration;
