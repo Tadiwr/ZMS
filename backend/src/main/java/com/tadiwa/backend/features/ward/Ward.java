@@ -2,6 +2,8 @@ package com.tadiwa.backend.features.ward;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tadiwa.backend.features.constituencies.Constituency;
+import com.tadiwa.backend.features.ward.dtos.WardDTO;
+import com.tadiwa.backend.shared.tranferable.Transferable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,7 +17,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "wards")
-public class Ward {
+public class Ward implements Transferable<WardDTO> {
     
     @Id
     @GeneratedValue
@@ -28,5 +30,16 @@ public class Ward {
     @JoinColumn(name = "constituency_id")
     @JsonIgnore
     private Constituency constituency;
+
+    @Override
+    public WardDTO toDTO() {
+        return new WardDTO(
+            this.getId(),
+            this.getName(),
+            this.getConstituency().getId()
+        );
+    }
+
+
 
 }
