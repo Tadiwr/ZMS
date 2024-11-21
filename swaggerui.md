@@ -1,43 +1,43 @@
-# Setting up Swagger UI with Java Spring Boot is a great way to document your RESTful APIs. Here's a step-by-step guide to get you started
+It sounds like you're encountering an issue related to dependencies. This error often occurs when there's a mismatch between the versions of Spring Boot and the dependencies you're using[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/springfox/springfox/issues/4061?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1"). Here are a few steps to troubleshoot and resolve this issue:
 
-1. **Add Dependencies**: First, you need to add the necessary dependencies to your `pom.xml` file if you're using Maven:
+1. **Check Dependencies**: Ensure that your `pom.xml` or `build.gradle` file includes the correct versions of Spring Boot and related dependencies[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/springfox/springfox/issues/4061?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1"). For example, if you're using Spring Boot 3.0.0, you might need to use an older version of Springfox[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/springfox/springfox/issues/4061?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1").
 
-   ```xml
-   <dependency>
-       <groupId>io.springfox</groupId>
-       <artifactId>springfox-boot-starter</artifactId>
-       <version>3.0.0</version>
-   </dependency>
-   ```
+2. **Update Dependencies**: If you're using Spring Boot 3.0.0, consider using `springdoc-openapi` instead of Springfox, as Springfox is not fully compatible with Spring Boot 3.0.0[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/springfox/springfox/issues/4061?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1"). Update your dependencies accordingly.
 
-2. **Create a Swagger Configuration Class**: Create a new configuration class to set up Swagger:
+3. **Check Configuration**: Verify that your Swagger configuration class is correctly set up and that there are no typos or missing annotations[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/springfox/springfox/issues/4061?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1").
 
-   ```java
-   import org.springframework.context.annotation.Bean;
-   import org.springframework.context.annotation.Configuration;
-   import springfox.documentation.builders.PathSelectors;
-   import springfox.documentation.builders.RequestHandlerSelectors;
-   import springfox.documentation.spi.DocumentationType;
-   import springfox.documentation.spring.web.plugins.Docket;
-   import springfox.documentation.swagger2.annotations.EnableSwagger2;
+4. **Check Ports**: Ensure that your application and server ports are correctly configured and match[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/springfox/springfox/issues/4061?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1").
 
-   @Configuration
-   @EnableSwagger2
-   public class SwaggerConfig {
-       @Bean
-       public Docket api() {
-           return new Docket(DocumentationType.SWAGGER_2)
-                   .select()
-                   .apis(RequestHandlerSelectors.any())
-                   .paths(PathSelectors.any())
-                   .build();
-       }
-   }
-   ```
+Here's an example of how to update your `pom.xml` to use `springdoc-openapi`:
 
-3. **Run Your Application**: Start your Spring Boot application. Swagger UI should be accessible at `http://localhost:8080/swagger-ui.html`.
+```xml
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-ui</artifactId>
+    <version>2.0.0</version>
+</dependency>
+```
 
-4. **Access Swagger UI**: Open your browser and navigate to `http://localhost:8080/swagger-ui.html`. You should see the Swagger UI interface where you can interact with your API endpoints.
+And here's an example of the Swagger configuration class:
 
-Would you like more details on any of these steps or additional customization options?
-[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/bovenson/notes/tree/387074588c50973b6fb8645f859ae9ca29b4df4c/Architecture%2FFramework%2FSwagger%2FSwagger.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/arthurmz/sca-monitoramento-barragens/tree/430d82245085c8c7bee3d67457cc7c1db3be7aaa/src%2Fmain%2Fjava%2Fcom%2Fsca%2Fmonitoramento_barragens%2Fconfig%2FSwaggerConfig.java?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "2")[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/lakermann/social-playlist/tree/63e94d8874f4153c8883cc5e53d668a8ffcc2cbe/docs%2Fsrc%2Fbackend%2Ffirst-spring-boot-application.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "3")
+```java
+import org.springdoc.api.OpenAPI;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class SwaggerConfig {
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("My API")
+                        .description("API documentation")
+                        .version("v1.0")
+                );
+    }
+}
+```
+
+Would you like more detailed instructions or help with a specific part of the setup?
