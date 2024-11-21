@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tadiwa.backend.features.constituencies.dtos.AddConstituencyDTO;
+import com.tadiwa.backend.features.constituencies.dtos.ConstituencyDTO;
 import com.tadiwa.backend.features.constituencies.dtos.UpdateConstituencyDTO;
 import com.tadiwa.backend.shared.exceptions.NotFound;
+import com.tadiwa.backend.shared.tranferable.DtoUtil;
 
 @RestController
 @RequestMapping("/constituencies")
@@ -24,12 +26,12 @@ public class ConstituencyController {
     private ConstituencyService service;
     
     @PostMapping("/add")
-    public ResponseEntity<Constituency> addConstituency(@RequestBody AddConstituencyDTO dto) {
+    public ResponseEntity<ConstituencyDTO> addConstituency(@RequestBody AddConstituencyDTO dto) {
 
         try {
             Constituency constituency = service.createConstituency(dto);
 
-            return ResponseEntity.ok(constituency);
+            return ResponseEntity.ok(DtoUtil.transform(constituency));
 
         } catch (NotFound e) {
             return ResponseEntity.notFound().build();
@@ -37,12 +39,12 @@ public class ConstituencyController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Constituency> updateConstituency(@RequestBody UpdateConstituencyDTO dto) {
+    public ResponseEntity<ConstituencyDTO> updateConstituency(@RequestBody UpdateConstituencyDTO dto) {
 
         try {
             Constituency constituency = service.updateConstituency(dto);
 
-            return ResponseEntity.ok(constituency);
+            return ResponseEntity.ok(DtoUtil.transform(constituency));
 
         } catch (NotFound e) {
             return ResponseEntity.notFound().build();
@@ -50,12 +52,12 @@ public class ConstituencyController {
     }
 
     @GetMapping("")
-    public Iterable<Constituency> getAllConstituencies() {
-        return service.getAllConstituencies();
+    public Iterable<ConstituencyDTO> getAllConstituencies() {
+        return DtoUtil.transform(service.getAllConstituencies());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Constituency> getConstituencyById(@PathVariable Long id) {
+    public ResponseEntity<ConstituencyDTO> getConstituencyById(@PathVariable Long id) {
         Optional<Constituency> constituencyOptional = service.getConstituencyById(id);
 
         if (constituencyOptional.isEmpty()) {
@@ -64,7 +66,7 @@ public class ConstituencyController {
 
         Constituency constituency = constituencyOptional.get();
 
-        return ResponseEntity.ok(constituency);
+        return ResponseEntity.ok(DtoUtil.transform(constituency));
 
     }
 

@@ -3,8 +3,10 @@ package com.tadiwa.backend.features.constituencies;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tadiwa.backend.features.constituencies.dtos.ConstituencyDTO;
 import com.tadiwa.backend.features.provinces.Province;
 import com.tadiwa.backend.features.ward.Ward;
+import com.tadiwa.backend.shared.tranferable.Transferable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,8 +22,8 @@ import lombok.Data;
 @Entity
 @Table(name = "contituencies")
 
-public class Constituency {
-    
+public class Constituency implements Transferable<ConstituencyDTO> {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -36,5 +38,15 @@ public class Constituency {
 
     @OneToMany(mappedBy = "constituency")
     private List<Ward> wards;
+
+    @Override
+    public ConstituencyDTO toDTO() {
+        return new ConstituencyDTO(
+            this.getId(),
+            this.getName(),
+            this.getWards(),
+            this.getProvince().getId()
+        );
+    }
 
 }
