@@ -1,11 +1,11 @@
-package com.tadiwa.backend.features.branches;
+package com.tadiwa.backend.features.pollingstation;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tadiwa.backend.features.branches.dto.BranchDTO;
 import com.tadiwa.backend.features.cell.Cell;
-import com.tadiwa.backend.features.partydistricts.PartyDistrict;
+import com.tadiwa.backend.features.pollingstation.dtos.PollingStationDTO;
+import com.tadiwa.backend.features.ward.Ward;
 import com.tadiwa.backend.shared.tranferable.Transferable;
 
 import jakarta.persistence.Column;
@@ -20,9 +20,9 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "branches")
-public class Branch implements Transferable<BranchDTO> {
-    
+@Table(name = "polling_stations")
+public class PollingStation implements Transferable<PollingStationDTO> {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -30,25 +30,23 @@ public class Branch implements Transferable<BranchDTO> {
     @Column
     private String name;
 
-    
     @ManyToOne
+    @JoinColumn(name = "ward_id")
     @JsonIgnore
-    @JoinColumn(name = "party_district_id")
-    private PartyDistrict partyDistrict;
+    private Ward ward;
 
-    @OneToMany(mappedBy = "branch")
-    private List<Cell> cells;
+    @OneToMany(mappedBy = "pollingStation")
+    List<Cell> cells;
 
 
     @Override
-    public BranchDTO toDTO() {
-        return new BranchDTO(
+    public PollingStationDTO toDTO() {
+        return new PollingStationDTO(
             this.id,
             this.name,
-            this.getPartyDistrict().getId(),
+            this.getWard().getId(),
             this.getCells()
         );
     }
-
-
+    
 }

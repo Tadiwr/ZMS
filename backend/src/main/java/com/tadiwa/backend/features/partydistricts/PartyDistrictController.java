@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tadiwa.backend.features.partydistricts.dto.AddPartyDistrictDTO;
+import com.tadiwa.backend.features.partydistricts.dto.PartyDistrictDTO;
 import com.tadiwa.backend.features.partydistricts.dto.UpdatePartyDistrictDTO;
 import com.tadiwa.backend.shared.exceptions.NotFound;
+import com.tadiwa.backend.shared.tranferable.DtoUtil;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,16 +30,16 @@ public class PartyDistrictController {
     private PartyDistrictService partyDistrictService;
 
     @GetMapping("")
-    public Iterable<PartyDistrict> getAll() {
-        return partyDistrictService.getAllPartyDistricts();
+    public Iterable<PartyDistrictDTO> getAll() {
+        return DtoUtil.transform(partyDistrictService.getAllPartyDistricts());
     }
 
     @PostMapping("/add")
-    public ResponseEntity<PartyDistrict> add(@RequestBody AddPartyDistrictDTO dto) {
+    public ResponseEntity<PartyDistrictDTO> add(@RequestBody AddPartyDistrictDTO dto) {
         
         try {
             PartyDistrict partyDistrict = partyDistrictService.createPartyDistrict(dto);
-            return ResponseEntity.ok(partyDistrict);
+            return ResponseEntity.ok(DtoUtil.transform(partyDistrict));
         } catch(NotFound err) {
             return ResponseEntity.notFound().build();
         }
@@ -45,7 +47,7 @@ public class PartyDistrictController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PartyDistrict> getAdminDistrict(@PathVariable Long id) {
+    public ResponseEntity<PartyDistrictDTO> getAdminDistrict(@PathVariable Long id) {
 
         Optional<PartyDistrict> optional = partyDistrictService.getPartyDistrictById(id);
 
@@ -53,18 +55,18 @@ public class PartyDistrictController {
             return ResponseEntity.notFound().build();
         }
 
-        PartyDistrict adminDistrict = optional.get();
+        PartyDistrict partyDistrict = optional.get();
 
-        return ResponseEntity.ok(adminDistrict);
+        return ResponseEntity.ok(DtoUtil.transform(partyDistrict));
         
     }
     
     @PutMapping("/update")
-    public ResponseEntity<PartyDistrict> update(@RequestBody UpdatePartyDistrictDTO dto) {
+    public ResponseEntity<PartyDistrictDTO> update(@RequestBody UpdatePartyDistrictDTO dto) {
         
         try {
             PartyDistrict partyDistrict = partyDistrictService.updatePartyDistrict(dto);
-            return ResponseEntity.ok(partyDistrict);
+            return ResponseEntity.ok(DtoUtil.transform(partyDistrict));
         } catch(NotFound err) {
             return ResponseEntity.notFound().build();
         }
