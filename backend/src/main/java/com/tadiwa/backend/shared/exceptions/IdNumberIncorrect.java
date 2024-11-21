@@ -1,11 +1,10 @@
 package com.tadiwa.backend.shared.exceptions;
 
-
-public class NotFound extends Exception {
-
+public class IdNumberIncorrect extends Exception {
 
     @Override
     public String getMessage() {
-        return "Resourse Not Found";
+        return "Invalid ID Number";
     }
+    
 }
