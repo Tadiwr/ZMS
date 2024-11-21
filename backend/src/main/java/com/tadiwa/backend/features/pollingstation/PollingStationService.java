@@ -1,6 +1,5 @@
 package com.tadiwa.backend.features.pollingstation;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +41,7 @@ public class PollingStationService {
         pollingStation.setName(dto.getName());
         pollingStation.setWard(ward);
 
-        return pollingStation;
+        return pollingStationRepo.save(pollingStation);
     }
 
     public PollingStation updatePollingStation(UpdatePollingStationDTO dto) throws NotFound {
@@ -59,7 +58,7 @@ public class PollingStationService {
         pollingStation.setName(dto.getName());
         pollingStation.setWard(ward);
 
-        return pollingStation;
+        return pollingStationRepo.save(pollingStation);
     }
 
     public void deletePollingStation(Long id) {
