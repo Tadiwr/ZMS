@@ -8,6 +8,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tadiwa.backend.features.cell.Cell;
 import com.tadiwa.backend.features.member.dto.MemberDTO;
+import com.tadiwa.backend.features.member.dto.UpdateMemberDTO;
 import com.tadiwa.backend.shared.tranferable.Transferable;
 
 import jakarta.persistence.Column;
