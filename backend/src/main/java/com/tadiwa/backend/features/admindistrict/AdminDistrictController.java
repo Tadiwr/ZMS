@@ -3,10 +3,12 @@ package com.tadiwa.backend.features.admindistrict;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tadiwa.backend.features.admindistrict.dtos.AdminDistrictDTO;
 import com.tadiwa.backend.features.admindistrict.dtos.CreateAdminDistrictDTO;
 import com.tadiwa.backend.features.admindistrict.dtos.UpdateAdminDistrictDTO;
 import com.tadiwa.backend.shared.exceptions.NotFound;
 import com.tadiwa.backend.shared.exceptions.ProvinceNotFound;
+import com.tadiwa.backend.shared.tranferable.DtoUtil;
 
 import java.util.Optional;
 
@@ -20,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-
 @RestController
 @RequestMapping("/admin-districts")
 public class AdminDistrictController {
@@ -29,11 +30,11 @@ public class AdminDistrictController {
     private AdminDistrictService adminDistService;
     
     @PostMapping("/add")
-    public ResponseEntity<AdminDistrict> add(@RequestBody CreateAdminDistrictDTO dto) {
+    public ResponseEntity<AdminDistrictDTO> add(@RequestBody CreateAdminDistrictDTO dto) {
         
         try {
             AdminDistrict district = adminDistService.createAdminDistrict(dto);
-            return ResponseEntity.ok(district);
+            return ResponseEntity.ok(DtoUtil.transform(district));
 
         } catch (ProvinceNotFound err) {
             err.printStackTrace();
@@ -49,19 +50,19 @@ public class AdminDistrictController {
     }
 
     @GetMapping("")
-    public ResponseEntity<Iterable<AdminDistrict>> all() {
+    public ResponseEntity<Iterable<AdminDistrictDTO>> all() {
 
         Iterable<AdminDistrict> adminDistricts = adminDistService.getAllAdminDistricts();
-        return ResponseEntity.ok(adminDistricts);
+        return ResponseEntity.ok(DtoUtil.transform(adminDistricts));
         
     }
 
     @PutMapping("/update")
-    public ResponseEntity<AdminDistrict> add(@RequestBody UpdateAdminDistrictDTO dto) {
+    public ResponseEntity<AdminDistrictDTO> add(@RequestBody UpdateAdminDistrictDTO dto) {
         
         try {
             AdminDistrict district = adminDistService.updateAdminDistrict(dto);
-            return ResponseEntity.ok(district);
+            return ResponseEntity.ok(DtoUtil.transform(district));
 
         } catch (NotFound err) {
             err.printStackTrace();
@@ -71,7 +72,7 @@ public class AdminDistrictController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AdminDistrict> getAdminDistrict(@PathVariable Long id) {
+    public ResponseEntity<AdminDistrictDTO> getAdminDistrict(@PathVariable Long id) {
 
         Optional<AdminDistrict> optional = adminDistService.getAdminDistrictById(id);
 
@@ -81,7 +82,7 @@ public class AdminDistrictController {
 
         AdminDistrict adminDistrict = optional.get();
 
-        return ResponseEntity.ok(adminDistrict);
+        return ResponseEntity.ok(DtoUtil.transform(adminDistrict));
         
     }
 
