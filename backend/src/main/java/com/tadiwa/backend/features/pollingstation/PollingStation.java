@@ -8,6 +8,7 @@ import com.tadiwa.backend.features.pollingstation.dtos.PollingStationDTO;
 import com.tadiwa.backend.features.ward.Ward;
 import com.tadiwa.backend.shared.tranferable.Transferable;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class PollingStation implements Transferable<PollingStationDTO> {
     @JsonIgnore
     private Ward ward;
 
-    @OneToMany(mappedBy = "pollingStation")
+    @OneToMany(mappedBy = "pollingStation", cascade = CascadeType.REMOVE)
     List<Cell> cells;
 
 

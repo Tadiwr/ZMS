@@ -8,6 +8,7 @@ import com.tadiwa.backend.features.provinces.Province;
 import com.tadiwa.backend.features.ward.Ward;
 import com.tadiwa.backend.shared.tranferable.Transferable;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class Constituency implements Transferable<ConstituencyDTO> {
     @JoinColumn(name = "province_id")
     private Province province;
 
-    @OneToMany(mappedBy = "constituency")
+    @OneToMany(mappedBy = "constituency", cascade = CascadeType.REMOVE)
     private List<Ward> wards;
 
     @Override
@@ -46,7 +47,7 @@ public class Constituency implements Transferable<ConstituencyDTO> {
             this.getName(),
             this.getWards(),
             this.getProvince().getId()
-        );
+            );
     }
 
 }

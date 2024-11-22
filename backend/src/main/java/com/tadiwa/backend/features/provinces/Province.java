@@ -9,6 +9,7 @@ import com.tadiwa.backend.features.constituencies.Constituency;
 import com.tadiwa.backend.features.provinces.dto.ProvinceDTO;
 import com.tadiwa.backend.shared.tranferable.Transferable;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,10 +29,10 @@ public class Province implements Transferable<ProvinceDTO> {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "province")
+    @OneToMany(mappedBy = "province", cascade = CascadeType.REMOVE)
     private List<AdminDistrict> adminDistricts;
 
-    @OneToMany(mappedBy = "province")
+    @OneToMany(mappedBy = "province", cascade = CascadeType.REMOVE)
     private List<Constituency> constituencies;
 
     public ProvinceDTO toDTO() {

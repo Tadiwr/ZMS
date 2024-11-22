@@ -8,6 +8,7 @@ import com.tadiwa.backend.features.branches.Branch;
 import com.tadiwa.backend.features.partydistricts.dto.PartyDistrictDTO;
 import com.tadiwa.backend.shared.tranferable.Transferable;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class PartyDistrict implements Transferable<PartyDistrictDTO> {
     @JoinColumn(name = "admin_district_id")
     private AdminDistrict adminDistrict;
 
-    @OneToMany(mappedBy = "partyDistrict")
+    @OneToMany(mappedBy = "partyDistrict", cascade = CascadeType.REMOVE)
     private List<Branch> branchs;
 
     @Override

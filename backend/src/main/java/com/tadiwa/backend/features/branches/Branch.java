@@ -8,6 +8,7 @@ import com.tadiwa.backend.features.cell.Cell;
 import com.tadiwa.backend.features.partydistricts.PartyDistrict;
 import com.tadiwa.backend.shared.tranferable.Transferable;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class Branch implements Transferable<BranchDTO> {
     @JoinColumn(name = "party_district_id")
     private PartyDistrict partyDistrict;
 
-    @OneToMany(mappedBy = "branch")
+    @OneToMany(mappedBy = "branch", cascade = CascadeType.REMOVE)
     private List<Cell> cells;
 
 

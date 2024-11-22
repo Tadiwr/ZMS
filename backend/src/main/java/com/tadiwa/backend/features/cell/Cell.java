@@ -9,6 +9,7 @@ import com.tadiwa.backend.features.member.Member;
 import com.tadiwa.backend.features.pollingstation.PollingStation;
 import com.tadiwa.backend.shared.tranferable.Transferable;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,7 +42,7 @@ public class Cell implements Transferable<CellDTO>{
     @JoinColumn(name = "polling_station_id")
     private PollingStation pollingStation;
 
-    @OneToMany(mappedBy = "cell")
+    @OneToMany(mappedBy = "cell", cascade = CascadeType.REMOVE)
     private List<Member> members;
 
     @Override

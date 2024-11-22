@@ -8,6 +8,7 @@ import com.tadiwa.backend.features.pollingstation.PollingStation;
 import com.tadiwa.backend.features.ward.dtos.WardDTO;
 import com.tadiwa.backend.shared.tranferable.Transferable;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class Ward implements Transferable<WardDTO> {
     private Constituency constituency;
 
 
-    @OneToMany
+    @OneToMany(mappedBy = "ward", cascade = CascadeType.REMOVE)
     private List<PollingStation> pollingStations;
 
     @Override
