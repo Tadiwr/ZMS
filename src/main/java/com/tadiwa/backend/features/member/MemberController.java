@@ -70,7 +70,7 @@ public class MemberController extends RestControllerUtils {
         } catch (NotFound e) {
             e.printStackTrace();
             return ResponseEntity.notFound().build();
-        }
+        } 
     }
 
     @PostMapping("/update")
