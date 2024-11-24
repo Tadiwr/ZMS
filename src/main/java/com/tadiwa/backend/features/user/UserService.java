@@ -57,6 +57,10 @@ public class UserService {
         return userRepo.findById(id);
     }
 
+    public Optional<User> getUser(String email) {
+        return userRepo.findByEmail(email);
+    }
+
     public List<User> getAllUsers() {
         return userRepo.findAll()
             .stream()
