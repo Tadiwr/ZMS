@@ -8,6 +8,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import com.tadiwa.backend.features.user.User;
@@ -72,6 +73,7 @@ public class JwtUtil {
 
         return claims;
     }
+
 
     
 
