@@ -25,8 +25,8 @@ public class SecurityConfig {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @Autowired
-    private JwtFilter jwtFilter;
+    // @Autowired
+    // private JwtFilter jwtFilter;
     
     @Bean 
 
@@ -39,11 +39,13 @@ public class SecurityConfig {
             .authenticationProvider(authenticationProvider())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(req -> 
-                req.requestMatchers("/auth/login", "/auth/register").permitAll()
-                .anyRequest().authenticated()
+                // req.requestMatchers("/auth/login", "/auth/register").permitAll()
+                // .anyRequest().authenticated()
+
+                req.anyRequest().permitAll()
             
             )
-            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+            // .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
             .build();
     }
 
