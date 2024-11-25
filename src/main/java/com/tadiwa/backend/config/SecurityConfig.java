@@ -14,8 +14,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.tadiwa.backend.features.auth.CustomUserDetailsService;
+import com.tadiwa.backend.features.auth.JwtFilter;
 
 @EnableWebSecurity
 @Configuration
@@ -23,6 +24,9 @@ public class SecurityConfig {
 
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private JwtFilter jwtFilter;
     
     @Bean 
 
@@ -31,14 +35,16 @@ public class SecurityConfig {
         return http
             .cors(cors -> cors.disable())
             .csrf(csrf -> csrf.disable())
-            .httpBasic(Customizer.withDefaults())
+            .httpBasic(httpBasic -> httpBasic.disable())
             .authenticationProvider(authenticationProvider())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(req -> 
                 req.requestMatchers("/auth/login", "/auth/register").permitAll()
                 .anyRequest().authenticated()
             
-            ).build();
+            )
+            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+            .build();
     }
 
     @Bean
