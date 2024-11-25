@@ -25,8 +25,8 @@ public class SecurityConfig {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    // @Autowired
-    // private JwtFilter jwtFilter;
+    @Autowired
+    private JwtFilter jwtFilter;
     
     @Bean 
 
