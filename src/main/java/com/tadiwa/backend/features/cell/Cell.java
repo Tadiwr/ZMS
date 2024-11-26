@@ -17,6 +17,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -31,6 +32,15 @@ public class Cell implements Transferable<CellDTO>{
 
     @Column
     private String name;
+
+    @OneToOne
+    private Member politicalCommisar = null;
+
+    @OneToOne
+    private Member chairPerson = null;
+
+    @OneToOne
+    private Member treasurer = null;
 
     @ManyToOne
     @JsonIgnore
