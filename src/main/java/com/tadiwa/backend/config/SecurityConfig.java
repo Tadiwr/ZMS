@@ -33,10 +33,10 @@ public class SecurityConfig {
             .cors(cors -> cors.disable())
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(req -> 
-                req.requestMatchers("/auth/login", "/auth/register").permitAll()
-                .anyRequest().authenticated()
+                // req.requestMatchers("/auth/login", "/auth/register").permitAll()
+                // .anyRequest().authenticated()
 
-                // req.anyRequest().permitAll()
+                req.anyRequest().permitAll()
             )
             .httpBasic(basic -> basic.disable())
             .authenticationProvider(authenticationProvider())
