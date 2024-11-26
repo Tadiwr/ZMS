@@ -136,4 +136,8 @@ public class CellService {
         return reportGenerator.generatePdfReport();
         
     }
+
+    public Cell update(Cell cell) {
+        return cellRepo.save(cell);
+    }
 }
