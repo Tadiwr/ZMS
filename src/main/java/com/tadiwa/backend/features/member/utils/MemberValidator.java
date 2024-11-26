@@ -15,7 +15,7 @@ public class MemberValidator {
 
 
     public void validateDTO(AddMemberDTO dto) throws IdNumberAlreadyTaken {
-        if (validateIdNumberUniqueness(dto.idNumber())) {
+        if (!validateIdNumberUniqueness(dto.idNumber())) {
             throw new IdNumberAlreadyTaken();
         }
     }
