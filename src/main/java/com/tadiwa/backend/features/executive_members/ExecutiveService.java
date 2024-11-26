@@ -3,7 +3,6 @@ package com.tadiwa.backend.features.executive_members;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +40,13 @@ public class ExecutiveService {
 
         Member member = memberOptional.get();
 
-        switch (assignRoleDTO.role()) {
+        return assignExecutiveMember(cell, member, assignRoleDTO.role());
+
+    }
+
+    public ExecutiveMemberDTO assignExecutiveMember(Cell cell, Member member, ExecutiveRole role) throws NotFound {
+    
+        switch (role) {
         
             case POLITICAL_COMMISSAR:
                 cell.setPoliticalCommissar(member);
@@ -56,7 +61,12 @@ public class ExecutiveService {
 
         cellService.update(cell);
 
-        ExecutiveMemberDTO dto = new ExecutiveMemberDTO(MemberDTO.from(member), cell.getId(), cell.getName(), assignRoleDTO.role());
+        ExecutiveMemberDTO dto = new ExecutiveMemberDTO(
+            MemberDTO.from(member),
+            cell.getId(),
+            cell.getName(),
+            role
+        );
 
         return dto;
 

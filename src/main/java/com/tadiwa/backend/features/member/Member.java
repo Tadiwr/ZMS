@@ -7,7 +7,6 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tadiwa.backend.features.cell.Cell;
-import com.tadiwa.backend.features.executive_members.ExecutiveRole;
 import com.tadiwa.backend.features.member.dto.MemberDTO;
 import com.tadiwa.backend.shared.tranferable.Transferable;
 
