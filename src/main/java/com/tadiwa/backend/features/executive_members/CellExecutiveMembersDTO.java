@@ -18,7 +18,7 @@ public record CellExecutiveMembersDTO(
             cell.getName(),
             MemberDTO.from(cell.getTreasurer()),
             MemberDTO.from(cell.getChairPerson()),
-            MemberDTO.from(cell.getPoliticalCommisar())
+            MemberDTO.from(cell.getPoliticalCommissar())
         );
     }
 
