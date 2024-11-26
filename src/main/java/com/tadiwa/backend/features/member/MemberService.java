@@ -81,4 +81,8 @@ public class MemberService {
     public void deleteMember(Long id) {
         memberRepo.deleteById(id);
     }
+
+    public Optional<Member> getCellMember(Cell cell, Long memberId) {
+        return memberRepo.findByCellAndId(cell, memberId);
+    }
 }
