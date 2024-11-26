@@ -9,6 +9,7 @@ import com.tadiwa.backend.features.member.Member;
 import com.tadiwa.backend.features.pollingstation.PollingStation;
 import com.tadiwa.backend.shared.tranferable.Transferable;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,12 +34,15 @@ public class Cell implements Transferable<CellDTO>{
     @Column
     private String name;
 
+    @Nullable
     @OneToOne
-    private Member politicalCommisar = null;
+    private Member politicalCommissar = null;
 
+    @Nullable
     @OneToOne
     private Member chairPerson = null;
 
+    @Nullable
     @OneToOne
     private Member treasurer = null;
 
