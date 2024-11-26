@@ -1,12 +1,12 @@
 package com.tadiwa.backend.features.executive_members;
 
 
-import com.tadiwa.backend.features.cell.Cell;
-import com.tadiwa.backend.features.member.Member;
+import com.tadiwa.backend.features.member.dto.MemberDTO;
 
 public record ExecutiveMemberDTO(
-    Member member,
-    Cell cell,
+    MemberDTO member,
+    Long cellId,
+    String cellName,
     ExecutiveRole role
 ) {
     
